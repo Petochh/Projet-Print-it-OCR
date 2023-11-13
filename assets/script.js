@@ -26,22 +26,6 @@ var arrow_right = document.querySelector('.arrow_right');
 
 arrow_left.addEventListener('click', function(){console.log('fleche gauche'), change_slide(sens='gauche')});
 arrow_right.addEventListener('click', function(){console.log('fleche droite'), change_slide(sens='droite')});
-/*
-var i = 0;
-do {
-	var create_dot = document.createElement('div');
-	
-	if (i == 0) {
-		create_dot.className = "dot dot_selected";
-		document.querySelector('.dots').append(create_dot);
-		i++
-	} else {
-		create_dot.className = "dot";
-		document.querySelector('.dots').append(create_dot);
-		i++
-	}
-} while (i < slides.length)
-*/
 
 for (var i = 0; i < slides.length; i++) {
 	var create_dot = document.createElement('div');
