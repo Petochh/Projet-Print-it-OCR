@@ -17,18 +17,14 @@ const slides = [
 	}
 ]
 
+let arrow_left = document.querySelector('.arrow_left');
+let arrow_right = document.querySelector('.arrow_right');
 
+arrow_left.addEventListener('click', function(){change_slide(direction='left')});
+arrow_right.addEventListener('click', function(){change_slide(direction='right')});
 
-
-
-var arrow_left = document.querySelector('.arrow_left');
-var arrow_right = document.querySelector('.arrow_right');
-
-arrow_left.addEventListener('click', function(){console.log('fleche gauche'), change_slide(sens='gauche')});
-arrow_right.addEventListener('click', function(){console.log('fleche droite'), change_slide(sens='droite')});
-
-for (var i = 0; i < slides.length; i++) {
-	var create_dot = document.createElement('div');
+for (let i = 0; i < slides.length; i++) {
+	let create_dot = document.createElement('div');
 	
 	if (i == 0) {
 		create_dot.className = "dot dot_selected";
@@ -39,39 +35,27 @@ for (var i = 0; i < slides.length; i++) {
 	}
 }
 
-var current_index = 0;
+let current_index = 0;
 
-function change_slide(sens) {
-	var banner_img = document.querySelector('#banner-img');
-	var banner_text = document.querySelector('#banner-text');
+function change_slide(direction) {
+	let banner_img = document.querySelector('#banner-img');
+	let banner_text = document.querySelector('#banner-text');
 
 	
-	if (sens=='droite') {
-		++current_index;
-		if (current_index < slides.length){
-			banner_img.src = "./assets/images/slideshow/"+slides[current_index].image;
-			banner_text.innerHTML = slides[current_index].tagLine;
-		}else{
-			current_index=0;
-			banner_img.src = "./assets/images/slideshow/"+slides[current_index].image;
-			banner_text.innerHTML = slides[current_index].tagLine;
-		}
-	} else if (sens=='gauche') {
-		--current_index;
-		if (current_index >= 0){
-			banner_img.src = "./assets/images/slideshow/"+slides[current_index].image;
-			banner_text.innerHTML = slides[current_index].tagLine;
-		}else{
-			current_index= slides.length -1;
-			banner_img.src = "./assets/images/slideshow/"+slides[current_index].image;
-			banner_text.innerHTML = slides[current_index].tagLine;
-		}
+	if (direction=='right') {
+		current_index = (current_index + 1) % slides.length;
+	} else if (direction=='left') {
+		current_index = (current_index - 1 + slides.length) % slides.length;
 	}
+
+banner_img.src = "./assets/images/slideshow/" + slides[current_index].image;
+banner_text.innerHTML = slides[current_index].tagLine;
+
 updateDots();
 }
 
 function updateDots() {
-	var up_dots = document.querySelectorAll('.dots div');
+	let up_dots = document.querySelectorAll('.dots div');
 
 	up_dots.forEach(function(up_dot) {
 		up_dot.classList.remove('dot_selected');
