@@ -43,9 +43,12 @@ function change_slide(direction) {
 
 	
 	if (direction=='right') {
-		current_index = (current_index + 1) % slides.length;
+		current_index++
+		if(current_index > slides.length -1) current_index = 0
 	} else if (direction=='left') {
-		current_index = (current_index - 1 + slides.length) % slides.length;
+		current_index--
+		if (current_index < 0) current_index = slides.length -1
+		
 	}
 
 banner_img.src = "./assets/images/slideshow/" + slides[current_index].image;
